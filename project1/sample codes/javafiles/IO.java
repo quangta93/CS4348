@@ -14,24 +14,32 @@ public class IO
 	 Runtime rt = Runtime.getRuntime();
 
 	 Process proc = rt.exec("java HelloYou");
+    System.out.println("started child process");
 
 	 OutputStream os = proc.getOutputStream();
-
          PrintWriter pw = new PrintWriter(os);
-	 pw.printf("Greg\n");
-         pw.flush();  
+         System.out.println("writing ...");
+	     pw.printf("Greg\n");
+         // pw.flush();
 
+    long startTime = System.currentTimeMillis();
 	 InputStream is = proc.getInputStream();
 
-	 while ((x=is.read()) != -1)
-	    System.out.println((char)x); 
-	      
-	 proc.waitFor();
+    boolean responded = false;
+    while (!responded) {
+   	 while ((x=is.read()) != -1) {
+         responded = true;
+   	    System.out.println((char)x);
+       }
 
+       try {Thread.sleep(200);} catch(Exception e) {e.printStackTrace();}
+     }
+	     proc.waitFor();
          int exitVal = proc.exitValue();
 
          System.out.println("Process exited: " + exitVal);
-
+         long endTIme = System.currentTimeMillis();
+         System.out.println("time = " + (endTIme - startTime));
       } 
       catch (Throwable t)
       {
