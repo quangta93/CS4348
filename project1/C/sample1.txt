@@ -1,7 +1,7 @@
 1    // Load 0
 0
 14   // CopyToX
-4    // LoadIdxX 28 (load from A-Z table) 
+4    // LoadIdxX 32 (load from A-Z table) 
 32
 21   // JumpIfEqual 12 
 12
@@ -13,7 +13,7 @@
 1    // Load 0
 0
 16   // CopyToY
-5    // LoadIdxY 55 (load from 1-10 table)
+5    // LoadIdxY 59 (load from 1-10 table)
 59
 21   // JumpIfEqual 27
 27
