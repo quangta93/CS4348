@@ -6,12 +6,6 @@
 #include <sys/wait.h>
 #include <time.h>
 
-/* defines boolean type */
-typedef enum {
-    false,
-    true
-} bool;
-
 #define CPU_READ read_pipe[0]
 #define CPU_WRITE write_pipe[1]
 #define MEMORY_READ write_pipe[0]
@@ -607,7 +601,7 @@ int main(int argc, char *argv[]) {
                     goto ERROR_EXIT;
             }
         }
-        if (timer != 0 && timer % TIMEOUT == 0)  {
+        if (timer >= TIMEOUT)  {
             // cause interrupt
             timer = 0;
             interrupted = true;
